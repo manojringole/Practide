@@ -23,5 +23,7 @@ public interface EmployeeServiceI {
 	public List<Employee> ageLessThanOrEqual(int empAge);
 	
 	public Employee loginCheck(int empId,String empName);
+	
+	public List<Employee> updateMultiEmployee(List<Employee> employees);
 
 }

@@ -84,4 +84,25 @@ public class EmployeeServiceImpl implements EmployeeServiceI{
 		return name;
 	}
 
+	@Override
+	public List<Employee> updateMultiEmployee(List<Employee> employees) {
+		
+		List<Employee> all = employeeRepository.findAll();
+		
+		List<Employee> list=new ArrayList<>();
+		
+		for(Employee e:all)
+		{
+			for(Employee e1:employees) {
+				
+				if(e.getEmpId()==e1.getEmpId()) {
+					
+					Employee employee = employeeRepository.save(e1);
+					list.add(employee);
+				}
+			}
+		}
+		return null;
+	}
+
 }

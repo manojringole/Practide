@@ -83,14 +83,29 @@ public class EmployeeController {
 
     }
     
-    @GetMapping(value = "/login",consumes = "application/json" ,produces = "application/json")
-    public ResponseEntity<Employee> loginCheck(@RequestBody int empId,String empName)
+    @PostMapping(value = "/login",consumes = "application/json" ,produces = "application/json")
+    public ResponseEntity<String> loginCheck(@RequestBody Employee employee)
     {
     	
-    	Employee check = employeeServiceI.loginCheck(empId, empName);
-		return new ResponseEntity<Employee>(check,HttpStatus.OK);
+    	Employee check = employeeServiceI.loginCheck(employee.getEmpId(),employee.getEmpName());
+    	
+    	if(check!=null) {
+		return new ResponseEntity<String>("successful login:",HttpStatus.OK);
+    	}
+		return new ResponseEntity<String>("login fail:"+check,HttpStatus.BAD_REQUEST);
 
     }
     
+    @PostMapping(value = "/updateMulti",consumes = "application/json" ,produces = "application/json")
+    public ResponseEntity<List<Employee>> updateMultiEmployee(@RequestBody List<Employee> employees){
+    	
+    	List<Employee> employee = employeeServiceI.updateMultiEmployee(employees);
+    	
+    	if(employee!=null) {
+    		return new ResponseEntity<List<Employee>>(employee,HttpStatus.OK);
+        	}
+		return new ResponseEntity<List<Employee>>(employee,HttpStatus.BAD_REQUEST);
+
+        }
     
 }

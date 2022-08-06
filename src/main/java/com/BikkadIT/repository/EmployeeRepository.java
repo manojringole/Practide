@@ -13,6 +13,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	
 	public List<Employee> findByEmpAgeLessThanEqual(int age);
 	
-	public Employee findByEmpIdAndEmpName(int id,String name);
+	public Employee findByEmpIdAndEmpName(int empId,String empName);
 
 }
